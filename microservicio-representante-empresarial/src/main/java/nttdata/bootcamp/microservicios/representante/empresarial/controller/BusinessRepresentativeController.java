@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import nttdata.bootcamp.microservicios.representante.empresarial.document.BusinessRepresentative;
 import nttdata.bootcamp.microservicios.representante.empresarial.services.BusinessRepresentativeService;
 import reactor.core.publisher.Flux;
@@ -58,6 +59,16 @@ public class BusinessRepresentativeController {
 		return service.findById(id);
 	}
 
+	
+	@PostMapping("/create-simple-business-repre")
+	public Mono<BusinessRepresentative> createSimpleRepre(@Valid @RequestBody BusinessRepresentative simplerepre) {
+	LOGGER.info("creamos un simple post para probar feign : " + service.saves(simplerepre));
+	return service.saves(simplerepre);
+	}
+	
+	
+	
+	
 	@PostMapping("/create-business-representative")
 	public ResponseEntity<Mono<?>> createBusinessRepresentative(
 
@@ -116,4 +127,8 @@ public class BusinessRepresentativeController {
 		return ResponseEntity.noContent().build();
 	}
 
+	
+	
+	
+	
 }
